@@ -9,10 +9,20 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const connectFlash = require("connect-flash");
+const expressSession = require("express-session");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(expressSession({
+  secret : "hey hey hey",
+  saveUninitialized : false,
+  resave : false
+}));
+
+app.use(connectFlash());
 
 app.use(logger('dev'));
 app.use(express.json());

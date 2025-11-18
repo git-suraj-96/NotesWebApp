@@ -20,7 +20,15 @@ router.get("/home", isLoggedIn, async (req, res) => {
   let data = jwt.verify(token, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
   let email = data.email;
 
-  const user = await userModel.findOne({ email: email });
+  let user = await userModel.findOne({ email: email });
+  if(user === null){
+    user = {
+      email : req.flash("email"),
+      notes : []
+    }
+  }
+  console.log(user);
+  
   res.render("home", { user });
 });
 
@@ -72,11 +80,12 @@ router.post("/register", async function (req, res) {
     });
 
     // create JWT token
-    let token = jwt.sign({ email }, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
+    let token = jwt.sign({ user : {email} }, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
 
     res.cookie("token", token);
+    req.flash("email", email);
+    res.redirect("/home");
 
-    res.render("home", {email});
   } catch (err) {
     console.error(err);
     res.status(500).send("Error in registration");
