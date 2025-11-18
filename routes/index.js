@@ -11,7 +11,7 @@ router.get("/", function (req, res) {
 
 // get signup page
 router.get("/signup", function (req, res) {
-  res.render("signup");
+  res.render("signup", {message : null});
 });
 
 // get home page
@@ -76,7 +76,7 @@ router.post("/register", async function (req, res) {
 
     res.cookie("token", token);
 
-    res.redirect("/home");
+    res.render("home", {email});
   } catch (err) {
     console.error(err);
     res.status(500).send("Error in registration");
