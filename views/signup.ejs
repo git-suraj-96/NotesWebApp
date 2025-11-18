@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Digital Notebook</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="left">
+    <img src="/images/staticImage/writing.png" alt="notepadImage">
+    <h1 class="l-heading">Your Digital Notebook, Reimagined</h1>
+    <p class="l-para">Organize your thoushts, tasks, and inspirations all in one place</p>
+  </div>
+  
+  <div class="right">
+    <h2>Signup your account now</h2>
+    <%if(message) { %>
+      <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color :red"><%= message %>
+    <%}%>
+    <div class="l-s-btn">
+      <a href="/">Log in</a>
+      <a href="/signup">Sign up</a>
+    </div>
+    <div class="form">
+      <form action="/register" method="post">
+        <label for="email">Email Address</label>
+        <br>
+        <input type="email" placeholder="Enter your email" name="email" required>
+        <br>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" class="password" placeholder="Enter your password" name="password" required>
+        <br>
+        <button type="button" class="show-pass">Show Password</button>
+        <br>
+        <button class="submit-btn" type="submit">Sign up</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+<script src="/javascripts/main.js"></script>
+</html>

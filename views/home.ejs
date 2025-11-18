@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Notes Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex h-auto min-h-screen w-full flex-col">
+      <div class="flex h-full min-h-screen">
+        <!-- Sidebar -->
+        <aside
+          class="flex w-64 flex-col border-r border-slate-200/10 dark:border-slate-800 bg-white dark:bg-[#111318] p-4"
+        >
+          <div class="flex h-full flex-col justify-between">
+            <div class="flex flex-col gap-6">
+              <div class="flex items-center gap-3">
+                <div
+                  class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                  data-alt="User avatar with an abstract gradient"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJyJ2OnhLhDJWsoip2P8JKFDoqb-hg05jld0QjWK7fmKc1zxN_Oh_L7pVvCcNLEi702BRskQllaW3ybclyri17TvP3QpYn0uo3qzyeeY7aVczcjHfSL1sVTkNEsKDx9L-iAmxJ09Zv4Ykv9x7JttXBFQnxeFLumWJqdMLDUtW0m2uG1rEFHBui6HX3TOBfw6ipD95rQOE1bVIjY2DIUJ2DBQtPpmLR3MVwMr8DnLMh1g2qA-iGY5-3PldiHe_vXrwKXKL7HWEkTQ');
+                  "
+                ></div>
+                <div class="flex flex-col">
+                  <p
+                    class="text-slate-500 dark:text-[#9da6b9] text-sm font-normal leading-normal"
+                  >
+                    <%= user.email %>
+                  </p>
+                </div>
+              </div>
+              <nav class="flex flex-col gap-2">
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-[#282e39]"
+                  href="/home"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary dark:text-white text-2xl"
+                    >description</span
+                  >
+                  <p
+                    class="text-primary dark:text-white text-sm font-medium leading-normal"
+                  >
+                    All Notes
+                  </p>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                  href="#"
+                >
+                  <span
+                    class="material-symbols-outlined text-slate-500 dark:text-white text-2xl"
+                    >settings</span
+                  >
+                  <p
+                    class="text-slate-700 dark:text-white text-sm font-medium leading-normal"
+                  >
+                    Settings
+                  </p>
+                </a>
+              </nav>
+            </div>
+            <div class="flex flex-col gap-4">
+              <button
+                class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
+              >
+                <span class="truncate new-note">New Note</span>
+              </button>
+              <div class="flex flex-col">
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                  href="/logout"
+                >
+                  <span
+                    class="material-symbols-outlined text-slate-500 dark:text-white text-2xl"
+                    >logout</span
+                  >
+                  <p
+                    class="text-slate-700 dark:text-white text-sm font-medium leading-normal"
+                  >
+                    Logout
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+          <div class="mx-auto flex w-full max-w-4xl flex-col gap-6">
+            <header class="flex flex-wrap items-center justify-between gap-4">
+              <h1
+                class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]"
+              >
+                My Notes
+              </h1>
+              <div class="w-full sm:w-auto sm:min-w-72">
+                <label class="flex flex-col h-12 w-full">
+                  <div
+                    class="flex w-full flex-1 items-stretch rounded-lg h-full"
+                  >
+                    <div
+                      class="text-slate-400 dark:text-[#9da6b9] flex border border-r-0 border-slate-300 dark:border-slate-700 bg-white dark:bg-[#282e39] items-center justify-center pl-4 rounded-l-lg"
+                    >
+                      <a class="anchor-search" href="#">
+                        <span class="material-symbols-outlined text-2xl search-btn"
+                        >search</span>
+                      </a>
+                      
+                    </div>
+                    <input
+                      class="search-box form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#282e39] h-full placeholder:text-slate-400 dark:placeholder:text-[#9da6b9] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                      placeholder="Search notes..."
+                      value=""
+                    />
+                  </div>
+                </label>
+              </div>
+            </header>
+            <!-- Notes Grid -->
+            <div
+              class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 main-box-grid"
+            >
+              <!-- <div
+                class="group relative flex cursor-pointer flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111318] p-4 transition-all hover:shadow-lg hover:-translate-y-1 dark:hover:border-primary/50"
+              >
+                <div
+                  class="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >edit</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >delete</span
+                    >
+                  </button>
+                </div>
+                <div>
+                  <p
+                    class="text-slate-900 dark:text-white text-base font-medium leading-normal pr-16"
+                  >
+                    Meeting Notes Q2
+                  </p>
+                  <p
+                    class="text-slate-500 dark:text-[#9da6b9] text-sm font-normal leading-normal mt-1 line-clamp-2"
+                  >
+                    Discussed the new marketing strategy and upcoming product
+                    launch...
+                  </p>
+                  <p
+                    class="text-slate-400 dark:text-slate-500 text-xs font-normal leading-normal mt-3"
+                  >
+                    Last modified: Yesterday
+                  </p>
+                </div>
+              </div> -->
+
+              <!-- <div
+                class="group relative flex cursor-pointer flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111318] p-4 transition-all hover:shadow-lg hover:-translate-y-1 dark:hover:border-primary/50 suraj"
+              >
+                <div
+                  class="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >edit</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >delete</span
+                    >
+                  </button>
+                </div>
+                <div>
+                  <p
+                    class="text-slate-900 dark:text-white text-base font-medium leading-normal pr-16"
+                  >
+                    Project Plan Draft
+                  </p>
+                  <p
+                    class="text-slate-500 dark:text-[#9da6b9] text-sm font-normal leading-normal mt-1 line-clamp-2"
+                  >
+                    Initial thoughts on the timeline, resources, and
+                    deliverables for the new initiative that will span across
+                    multiple departments.
+                  </p>
+                  <p
+                    class="text-slate-400 dark:text-slate-500 text-xs font-normal leading-normal mt-3"
+                  >
+                    Last modified: 2 days ago
+                  </p>
+                </div>
+              </div> -->
+
+              <% if(user.notes.length > 0){ user.notes.forEach(note => { %>
+              <div
+                class="group relative flex cursor-pointer flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111318] p-4 transition-all hover:shadow-lg hover:-translate-y-1 dark:hover:border-primary/50 parent"
+              >
+                <div
+                  class="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <a href="/edit/<%= note._id %>">
+                    <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 edit"
+                  >
+                    <span class="material-symbols-outlined text-base "
+                      >edit</span
+                    >
+                  </button>
+                  </a>
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 delete"
+                    data-post = <%= note._id %>
+                  >
+                    <span class="material-symbols-outlined text-base "
+                      >delete</span
+                    >
+                  </button>
+                </div>
+                <div>
+                  <p
+                    class="text-slate-900 dark:text-white text-base font-medium leading-normal pr-16 ankur"
+                  >
+                    <%= note.description %>
+                  </p>
+                  <p
+                    class="text-slate-500 dark:text-[#9da6b9] text-sm font-normal leading-normal mt-1 line-clamp-2 suraj"
+                  >
+                    <%= note.noteData %>
+                  </p>
+                  <p
+                    class="text-slate-400 dark:text-slate-500 text-xs font-normal leading-normal mt-3"
+                  >
+                    Last modified: <%= (note.updatedAt).toISOString().slice(0,
+                    10) %>
+                  </p>
+                </div>
+              </div>
+              <%}) }%>
+
+              <!-- <div
+                class="group relative flex cursor-pointer flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111318] p-4 transition-all hover:shadow-lg hover:-translate-y-1 dark:hover:border-primary/50"
+              >
+                <div
+                  class="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >edit</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >delete</span
+                    >
+                  </button>
+                </div>
+                <div>
+                  <p
+                    class="text-slate-900 dark:text-white text-base font-medium leading-normal pr-16"
+                  >
+                    Creative Ideas
+                  </p>
+                  <p
+                    class="text-slate-500 dark:text-[#9da6b9] text-sm font-normal leading-normal mt-1 line-clamp-2"
+                  >
+                    A collection of random thoughts and inspiration for the next
+                    big novel. Exploring themes of adventure and discovery.
+                  </p>
+                  <p
+                    class="text-slate-400 dark:text-slate-500 text-xs font-normal leading-normal mt-3"
+                  >
+                    Last modified: 1 week ago
+                  </p>
+                </div>
+              </div> -->
+            </div>
+            <!-- Empty State (Uncomment to view)
+                    <div class="flex flex-col items-center justify-center py-20 text-center">
+                        <div class="flex max-w-sm flex-col items-center gap-4">
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700">upcoming</span>
+                            <div class="flex flex-col items-center gap-2">
+                                <p class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Your space is empty</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Get started by creating your first note. All your thoughts will be saved here.</p>
+                            </div>
+                            <button class="mt-2 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                <span class="truncate">Create First Note</span>
+                            </button>
+                        </div>
+                    </div>
+                    -->
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- note banane ke liye page open karega -->
+    <div class="new-note-creation-box">
+      <div class="none">
+        <div class="container">
+          <h2 class="heading">
+            Create your new note <span class="float x-btn">X</span>
+          </h2>
+          <p class="white">Write your description of your note....</p>
+          <textarea
+            name="description"
+            id="description"
+            class="description"
+          ></textarea>
+          <p class="white top">Write your notes here...</p>
+          <textarea
+            name="notes"
+            id="notes"
+            class="notes description"
+          ></textarea>
+          <div class="btn">
+            <button class="save">SAVE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- note open karne par is page par deta dikhega -->
+    <div class="page-of-note-data">
+      <div class="second-page">
+        <div class="p-o-n-d-container">
+          <h2 class="read-description">Description here...</h2>
+          <div class="data">
+            <p class="read-note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque earum quam sit nulla, distinctio sapiente dolorem similique. Obcaecati praesentium dolorum consequatur voluptas dignissimos perferendis quisquam saepe magnam accusamus impedit, odio velit sequi.</p>
+          </div>
+          <p class="p-o-n-d-x">X</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- notes deleted succesfully message -->
+     <div class="message">
+      <p>Notes Deleted succesfully.</p>
+     </div>
+  </body>
+
+  <script src="/javascripts/home.js"></script>
+</html>

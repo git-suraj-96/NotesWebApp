@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  width: 49%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 7%;
+}
+
+.right {
+  width: 49%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.left img {
+  width: 57px;
+}
+
+.l-heading {
+  width: 70%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 10px;
+}
+.l-para {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  color: gray;
+}
+
+.right input {
+  width: 19rem;
+  height: 2rem;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: rgb(53, 51, 51);
+}
+
+.show-pass{
+      background-color: #0056ff;
+    padding: 5px;
+    margin: 0 0 23px 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.l-s-btn{
+  margin-bottom: 2rem;
+  margin-top: 4px;
+}
+.right a{
+  margin: 0 37px;
+    text-decoration: none;
+    background-color: #272525de;
+    padding: 5px 39px;
+    cursor: pointer;
+}
+
+.submit-btn{
+    margin-left: 22%;
+    background-color: #0056ff;
+    padding: 10px;
+    width: 12rem;
+    border: none;
+    cursor: pointer;
+}

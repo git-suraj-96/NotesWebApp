@@ -1,0 +1,169 @@
+.new-note-creation-box {
+  background-color: #ffffff2e;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: none;
+}
+
+.new-note-creation-box .container {
+  width: 57%;
+  height: 83%;
+  background-color: black;
+  padding: 10px;
+}
+
+.none{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-note-creation-box .heading{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    padding: 15px 0 20px 20px;
+}
+
+.float{
+    float: right;
+    font-size: 30px;
+    margin-right: 15px;
+    margin-top: -18px;
+    cursor: pointer;
+
+}
+
+.white{
+    color: white;
+    margin-left: 1rem;
+}
+
+.top{
+    margin-top: 2rem;
+}
+
+.description{
+    width: 80%;
+    margin-left: 1rem;
+    height: 3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-bottom: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #1b1a1a;
+    color: white;
+
+}
+.notes{
+    height: 50%;
+    scrollbar-width: none;
+}
+
+.new-note-creation-box .btn{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    padding-right: 4rem;
+    margin-top: 1rem;
+}
+
+.new-note-creation-box .btn button{
+    color: white;
+    padding: 7px 30px;
+    background-color: blue;
+        border-radius: 2px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.main-box-grid{
+    overflow: scroll;
+    height: 80vh;
+    scrollbar-width: none;
+}
+.suraj{
+        height: 10rem;
+    overflow: hidden;
+}
+
+.ankur{
+        height: 3rem;
+    overflow: hidden;
+}
+.parent{
+    height: max-content;
+}
+
+
+.page-of-note-data{
+    position: absolute;
+    top: 0;
+    background-color: #ffffff17;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.second-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.p-o-n-d-container{
+    background-color: black;
+    width: 70vw;
+    height: 90vh;
+}
+
+.p-o-n-d-container h2{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 21px;
+    margin: 4rem 79px 1rem 4rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.p-o-n-d-container .data{
+overflow: scroll;
+    scrollbar-width: none;
+    height: 29rem;
+    padding: 1rem 2rem;
+    width: 95%;
+    margin-left: 2rem;
+    border-radius: 5px;
+}
+
+.p-o-n-d-container .data p{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+.p-o-n-d-x{
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 35px;
+    right: 14rem;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.message{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: green;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: none;
+}
