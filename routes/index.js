@@ -16,21 +16,26 @@ router.get("/signup", function (req, res) {
 
 // get home page
 router.get("/home", isLoggedIn, async (req, res) => {
-  let token = req.cookies.token;
-  let data = jwt.verify(token, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
-  let email = data.email;
+  try {
+    let token = req.cookies.token;
 
-  let user = await userModel.findOne({ email: email });
-  if(user === null){
-    user = {
-      email : req.flash("email"),
-      notes : []
-    }
+    // token decode
+    let data = jwt.verify(token, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
+
+    // token ke andar "email" directly hai
+    let email = data.email;
+
+    // find user
+    let user = await userModel.findOne({ email });
+
+    res.render("home", { user });
+
+  } catch (err) {
+    console.log(err);
+    res.redirect("/login");
   }
-  console.log(user);
-  
-  res.render("home", { user });
 });
+
 
 // it will login user to his account
 router.post("/login", async function (req, res) {
@@ -59,38 +64,33 @@ router.get("/logout", function (req, res) {
 // POST Signup route
 router.post("/register", async function (req, res) {
   let { email, password } = req.body;
-  let userExist = await userModel.findOne({ email: email });
+
+  let userExist = await userModel.findOne({ email });
   if (userExist) {
     return res.render("signup", { message: "Try another Email and Password." });
   }
-  let createdUser = null;
 
   try {
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, async (err, hash) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        createdUser = await userModel.create({
-          email: email,
-          password: hash,
-        });
-      });
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(password, salt);
+
+    const createdUser = await userModel.create({
+      email,
+      password: hashed,
     });
 
-    // create JWT token
-    let token = jwt.sign({ user : {email} }, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
+    // token me aap email ko sahi pass karo:
+    let token = jwt.sign({ email: createdUser.email }, "a2@*@#*@&#@*&#YJBNDFJSHDUE");
 
     res.cookie("token", token);
-    req.flash("email", email);
     res.redirect("/home");
 
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).send("Error in registration");
   }
 });
+
 
 // it will also check user is login or not
 async function isLoggedIn(req, res, next) {
