@@ -88,3 +88,20 @@ body {
     border: none;
     cursor: pointer;
 }
+
+@media (max-width:800px) {
+  body,html{
+    flex-wrap: wrap;
+  }
+  .left, .right{
+    width: 100%;
+    height: 0;
+    justify-content: flex-end;
+  }
+  .left{
+    margin-top: 5rem;
+  }
+  .right a {
+    padding: 1rem;
+  }
+}
